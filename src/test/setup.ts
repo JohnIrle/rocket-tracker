@@ -1,10 +1,7 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import request from "supertest";
-
 import { app } from "../app";
-
-let mongo: any;
 
 declare global {
   namespace NodeJS {
@@ -14,12 +11,13 @@ declare global {
   }
 }
 
+let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = "htjks";
-  mongo = new MongoMemoryServer();
-  const mongoUri = await mongo.getUri();
+  process.env.JWT_KEY = "jksf";
+  mongo = await MongoMemoryServer.create();
+  const uri = mongo.getUri();
 
-  await mongoose.connect(mongoUri, {
+  await mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   });
