@@ -1,0 +1,8 @@
+{
+  "plugins": ["testing-library"],
+  "rules": {
+    "testing-library/await-async-quiery": "error",
+    "testing-library/no-await-sync-query": "error",
+    "testing-libarary/no-debug": "warn"
+  }
+}
