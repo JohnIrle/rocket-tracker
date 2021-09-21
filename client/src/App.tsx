@@ -5,13 +5,13 @@ import store from "./store";
 import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <Router>
-        <Route path="/login" exact component={LoginPage} />
-      </Router>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <Router>
+                <Route path="/login" exact component={LoginPage} />
+            </Router>
+        </Provider>
+    );
 }
 
 export default App;
