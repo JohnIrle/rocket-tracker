@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-testing-library": "^4.12.3",
     "prettier": "^2.4.1"
   }
 }
