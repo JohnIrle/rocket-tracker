@@ -1,12 +1,12 @@
 import React from "react";
-import LoginForm from "./components/LoginForm/LoginForm";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 function App() {
-  const onSubmit = () => {};
   return (
-    <div>
-      <LoginForm onSubmit={onSubmit} />
-    </div>
+    <Router>
+      <Route path="/login" exact component={LoginPage} />
+    </Router>
   );
 }
 
