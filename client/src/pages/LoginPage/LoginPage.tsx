@@ -1,7 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import { logIn } from "../../actions/authenticationActions";
+import { RootStore } from "../../store";
+import Error from "../../components/Error/Error";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
