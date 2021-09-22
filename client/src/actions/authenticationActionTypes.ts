@@ -18,7 +18,7 @@ export interface LoginSuccess {
 
 export interface LoginFail {
   type: typeof LOGIN_FAIL;
-  payload: string;
+  payload: { message: string; field: string }[];
 }
 
 export type LoginTypes = LoginRequest | LoginSuccess | LoginFail;

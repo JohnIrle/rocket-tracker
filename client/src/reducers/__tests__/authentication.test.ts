@@ -9,12 +9,12 @@ it("should return an error message on LOGIN_FAIL", () => {
   expect(
     authentication(undefined, {
       type: LOGIN_FAIL,
-      payload: "Error Message",
+      payload: [{ message: "Email must be valid", field: "email" }],
     })
   ).toEqual({
     loading: false,
     error: true,
-    errorMessage: "Error Message",
+    errorMessages: [{ message: "Email must be valid", field: "email" }],
   });
 });
 
@@ -25,6 +25,8 @@ it("should return loading on LOGIN_REQUEST", () => {
     })
   ).toEqual({
     loading: true,
+    error: false,
+    errorMessages: [],
   });
 });
 
@@ -36,6 +38,8 @@ it("should return a user payload with LOGIN_SUCCESS", () => {
     })
   ).toEqual({
     loading: false,
+    error: false,
+    errorMessages: [],
     user: { email: "test@test.com", id: "614aa2be1849a35943840d89" },
   });
 });

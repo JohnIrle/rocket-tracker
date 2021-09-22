@@ -9,13 +9,15 @@ import produce from "immer";
 
 interface InitialStateI {
   loading: boolean;
-  error?: boolean;
-  errorMessage?: string;
+  error: boolean;
+  errorMessages: { message: string; field: string }[];
   user?: UserPayload;
 }
 
 const initialState: InitialStateI = {
   loading: true,
+  error: false,
+  errorMessages: [],
 };
 export default function authentication(
   state = initialState,
@@ -35,7 +37,7 @@ export default function authentication(
       return produce(state, (draft) => {
         draft.loading = false;
         draft.error = true;
-        draft.errorMessage = action.payload;
+        draft.errorMessages = action.payload;
       });
     default:
       return state;

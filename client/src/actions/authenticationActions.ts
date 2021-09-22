@@ -2,6 +2,7 @@ import axios from "axios";
 import { Dispatch } from "redux";
 import { ThunkActionType } from "../store";
 import {
+  LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LoginTypes,
@@ -20,6 +21,6 @@ export const logIn =
 
       dispatch({ type: LOGIN_SUCCESS, payload: response.data });
     } catch (error) {
-      console.error(error);
+      dispatch({ type: LOGIN_FAIL, payload: error.response.data.errors });
     }
   };
