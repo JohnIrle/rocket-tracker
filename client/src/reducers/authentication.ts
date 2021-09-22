@@ -5,6 +5,7 @@ import {
   LoginTypes,
   UserPayload,
 } from "../actions/authenticationActionTypes";
+import produce from "immer";
 
 interface InitialStateI {
   loading: boolean;
@@ -22,20 +23,20 @@ export default function authentication(
 ): InitialStateI {
   switch (action.type) {
     case LOGIN_REQUEST:
-      return {
-        loading: true,
-      };
+      return produce(state, (draft) => {
+        draft.loading = true;
+      });
     case LOGIN_SUCCESS:
-      return {
-        loading: false,
-        user: action.payload,
-      };
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.user = action.payload;
+      });
     case LOGIN_FAIL:
-      return {
-        loading: false,
-        error: true,
-        errorMessage: action.payload,
-      };
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.error = true;
+        draft.errorMessage = action.payload;
+      });
     default:
       return state;
   }
