@@ -1,11 +1,11 @@
 import { rest } from "msw";
 
 export const handlers = [
-  rest.post("/api/users/signin", (req, res, ctx) => {
+  rest.post(`/api/users/signin`, (req, res, ctx) => {
     return res(
       ctx.json({
-        firstName: "john",
-        lastName: "test",
+        email: "test@test.com",
+        id: "614aa2be1849a35943840d89",
       })
     );
   }),
