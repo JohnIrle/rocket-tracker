@@ -6,6 +6,8 @@ import { RootStore } from "../../store";
 import Error from "../../components/Error/Error";
 
 const LoginPage = () => {
+    const { authentication } = useSelector((state: RootStore) => state);
+    const { error, errorMessages } = authentication;
     const dispatch = useDispatch();
     const onSubmit = (email: string, password: string) => {
         dispatch(logIn(email, password));
@@ -13,6 +15,7 @@ const LoginPage = () => {
     return (
         <div>
             <h1>Login</h1>
+            {error && <Error errors={errorMessages} />}
             <LoginForm onSubmit={onSubmit} />
         </div>
     );
