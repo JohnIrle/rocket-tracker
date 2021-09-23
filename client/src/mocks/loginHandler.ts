@@ -10,16 +10,40 @@ interface LoginResponse {
   id: string;
 }
 
-export const loginHandler = rest.post<LoginBody, LoginResponse>(
+interface LoginError {
+  errors: { message: string; field: string }[];
+}
+
+type ResponseTypes = LoginResponse | LoginError;
+
+const emailError = {
+  message: "Email must be valid",
+  field: "email",
+};
+const passwordError = {
+  message: "You must supply a password",
+  field: "password",
+};
+const wrongPasswordError = {
+  message: "Invalid credentials",
+  field: "password",
+};
+
+export const loginHandler = rest.post<LoginBody, ResponseTypes>(
   `/api/users/signin`,
   (req, res, ctx) => {
     const testPassword = "test";
     const { email, password } = req.body;
-    if (password !== testPassword) {
+    const errors = [
+      ...(!email ? [emailError] : []),
+      ...(!password ? [passwordError] : []),
+      ...(password !== testPassword ? [wrongPasswordError] : []),
+    ];
+    if (!email || !password) {
       return res(
+        ctx.status(400),
         ctx.json({
-          email: "error",
-          id: "lkjsd",
+          errors: [...errors],
         })
       );
     }
