@@ -25,7 +25,7 @@ const passwordError = {
   field: "password",
 };
 const wrongPasswordError = {
-  message: "Invalid credentials",
+  message: "Invalid Credentials",
   field: "password",
 };
 
@@ -34,12 +34,16 @@ export const loginHandler = rest.post<LoginBody, ResponseTypes>(
   (req, res, ctx) => {
     const testPassword = "test";
     const { email, password } = req.body;
+
+    const isWrongPassword = password !== "" && password !== testPassword;
+    const isError = !email || !password || password !== testPassword;
+
     const errors = [
       ...(!email ? [emailError] : []),
       ...(!password ? [passwordError] : []),
-      ...(password !== testPassword ? [wrongPasswordError] : []),
+      ...(isWrongPassword ? [wrongPasswordError] : []),
     ];
-    if (!email || !password) {
+    if (isError) {
       return res(
         ctx.status(400),
         ctx.json({
