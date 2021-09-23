@@ -1,5 +1,28 @@
 .error {
-    background-color: lightcoral;
-    padding: 1rem;
+    background-color: #eeeeee;
     border-radius: 3px;
+    position: relative;
 }
+
+.error::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: red;
+    width: 5px;
+    border-radius: 3px 0 0 3px;
+}
+
+.header {
+    background-color: hsla(0, 92%, 78%, 0.25);
+    padding: .5rem 1rem .5rem 2rem;
+    margin: 0;
+}
+
+.message {
+   padding: .5rem 1rem .5rem 1rem;
+}
+
+

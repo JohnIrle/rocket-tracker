@@ -8,12 +8,16 @@ interface ErrorProps {
 const Error = ({ errors }: ErrorProps) => {
   return (
     <div className={styles.error}>
-      <h4>Ooops....</h4>
-      <ul className="my-0">
-        {errors.map((err) => (
-          <li key={err.message}>{err.message}</li>
-        ))}
-      </ul>
+      <div className={styles.header}>
+        <strong>Error</strong>
+      </div>
+      <div className={styles.message}>
+        <ul>
+          {errors.map((err) => (
+            <li key={err.message}>{err.message}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
